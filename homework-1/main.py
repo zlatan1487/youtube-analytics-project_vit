@@ -1,11 +1,11 @@
 import os
 from src.channel import Channel
 
-channel_id = 'UC1eFXmJNkjITxPFWTy6RsWg'
+channel_id = 'UCMCgOm8GZkHp8zJ6l7_hIuA'
 api_key: str = os.getenv('YOUTUBE_API')
 
 if __name__ == '__main__':
-    vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA', api_key)
+    vdud = Channel(channel_id, api_key)
     vdud.print_info()
 
 
