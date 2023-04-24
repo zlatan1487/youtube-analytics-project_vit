@@ -31,7 +31,7 @@ class Channel:
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
-        channel_info = self.response.channels().list(id=self.channel_id, part='snippet,statistics').execute()
+        channel_info = self.response.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
         print(json.dumps(channel_info, indent=2, ensure_ascii=False))
 
     @classmethod
@@ -56,7 +56,7 @@ class Channel:
             json.dump(data, outfile, indent=2, ensure_ascii=False)
 
     @property
-    def id(self):
+    def channel_id(self):
         return self.__channel_id
 
 
