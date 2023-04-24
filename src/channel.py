@@ -41,6 +41,7 @@ class Channel:
         return resource
 
     def to_json(self, filename):
+        """создаем и сохраняем в файл значения атрибутов экземпляра Channel"""
         data = {
             'id': self.__channel_id,
             'title': self.title,
