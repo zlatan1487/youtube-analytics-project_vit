@@ -34,6 +34,30 @@ class Channel:
         channel_info = self.response.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
         print(json.dumps(channel_info, indent=2, ensure_ascii=False))
 
+    def __repr__(self):
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other):
+        return self.subscriber_count + other.subscriber_count
+
+    def __sub__(self, other):
+        return self.subscriber_count - other.subscriber_count
+
+    def __gt__(self, other):
+        return self.subscriber_count > other.subscriber_count
+
+    def __lt__(self, other):
+        return self.subscriber_count < other.subscriber_count
+
+    def __ge__(self, other):
+        return self.subscriber_count >= other.subscriber_count
+
+    def __le__(self, other):
+        return self.subscriber_count <= other.subscriber_count
+
+    def __eq__(self, other):
+        return self.subscriber_count == other.subscriber_count
+
     @classmethod
     def get_service(cls):
         """получаем объект для работы с API вне класса"""
@@ -58,6 +82,7 @@ class Channel:
     @property
     def channel_id(self):
         return self.__channel_id
+
 
 
 
