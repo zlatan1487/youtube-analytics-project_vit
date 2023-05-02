@@ -3,12 +3,11 @@ import os
 
 import googleapiclient
 from googleapiclient.discovery import build
+from src.mixin import Path
 
 
-class Channel:
+class Channel(Path):
     """Класс для ютуб-канала"""
-    api_key: str = os.getenv('YOUTUBE_API')
-    response = build('youtube', 'v3', developerKey=api_key)
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
@@ -30,7 +29,7 @@ class Channel:
         self.view_count = int(channel['statistics']['viewCount'])
 
     def print_info(self) -> None:
-        """Выводит в консоль информацию о канале."""
+        """Выводит в консоль информацию о канале"""
         channel_info = self.response.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
         print(json.dumps(channel_info, indent=2, ensure_ascii=False))
 
@@ -82,10 +81,3 @@ class Channel:
     @property
     def channel_id(self):
         return self.__channel_id
-
-
-
-
-
-
-
